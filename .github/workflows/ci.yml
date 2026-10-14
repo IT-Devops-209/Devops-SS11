@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: Run Unit Tests
+    name: Run Unit Tests & Build JAR & Login Registry
     runs-on: ubuntu-latest
 
     steps:
@@ -24,23 +24,33 @@ jobs:
 
       - name: Cấp quyền cho Gradle Wrapper
         run: chmod +x gradlew
+        working-directory: BaiTap1
 
       - name: Thực thi JUnit Test với Gradle
         run: ./gradlew test
+        working-directory: BaiTap1
 
       - name: Xuất Báo cáo Kết quả Test (Upload Test Report)
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: junit-test-report
-          path: build/reports/tests/test/
+          path: BaiTap1/build/reports/tests/test/
           retention-days: 7
 
       - name: Đóng gói tệp JAR với Gradle
         run: ./gradlew bootJar
+        working-directory: BaiTap1
 
       - name: Lưu trữ thành phẩm JAR Artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-jar
-          path: build/libs/*.jar
+          path: BaiTap1/build/libs/*.jar
+
+      - name: Đăng nhập vào GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.REGISTRY_TOKEN }}
