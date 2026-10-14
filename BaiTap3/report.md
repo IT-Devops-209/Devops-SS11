@@ -117,3 +117,5 @@ BUILD SUCCESSFUL in 18s
 1. Việc bổ sung `cache: 'gradle'` là phương pháp tối ưu hóa bắt buộc (Best Practice) trong quy trình CI/CD cho các dự án JVM (Java/Kotlin).
 2. Giúp giảm tải băng thông mạng, tránh tình trạng fail ngẫu nhiên do mạng chập chờn khi kết nối tới Maven Central / Nexus.
 3. Rút ngắn thời gian phản hồi (Feedback loop) cho lập trình viên từ vài phút xuống còn chưa đầy 40 giây cho mỗi lượt commit/pull request.
+4. Kiểm tra thành công qua 2 lần push liên tiếp lên GitHub Actions: runner nhận diện key cache và tự động khôi phục dependencies ngay tức thì.
+
