@@ -10,6 +10,10 @@ Repository Spring Boot (Gradle) kèm GitHub Actions Workflow tự động chạy
   - Thư mục: `BaiTap2/`
   - Thêm bước `./gradlew bootJar` và lưu artifact `app-jar` (`build/libs/*.jar`) bằng `actions/upload-artifact@v4`
 
+- **Bài 3:** Tối ưu tốc độ CI bằng Gradle Dependency Caching
+  - Thư mục: `BaiTap3/`
+  - Kích hoạt `cache: 'gradle'` trong `actions/setup-java@v5`, lập báo cáo `report.md` so sánh hiệu năng giảm ~75% thời gian chạy.
+
 ## Trigger
-- Push lên nhánh `main` → tự động chạy test, build jar và upload artifacts
+- Push lên nhánh `main` → tự động chạy test, build jar, lưu artifacts và cache dependencies.
 
