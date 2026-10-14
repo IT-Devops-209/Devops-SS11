@@ -5,3 +5,9 @@ build/
 *.war
 *.log
 .DS_Store
+bin/
+.idea/
+*.iml
+.project
+.classpath
+.settings/
